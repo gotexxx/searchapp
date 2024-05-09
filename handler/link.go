@@ -1,13 +1,17 @@
 package handler
 
 import (
-	"searchApp/view/link"
-
+	"github.com/gotexxx/searchapp/model"
+	"github.com/gotexxx/searchapp/view/link"
 	"github.com/labstack/echo/v4"
 )
 
-type linkHandler struct{}
+type LinkHandler struct{}
 
-func (h linkHandler) HandleLinkShow(c echo.Context) error {
-	return render(c, link.Show())
+func (h LinkHandler) HandleLinkShow(c echo.Context) error {
+	l := model.Link{
+		Url: "test.com",
+	}
+
+	return render(c, link.Show(l))
 }

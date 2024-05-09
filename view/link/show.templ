@@ -1,5 +1,29 @@
 package link
 
-templ Show(){
-    <h1> test </h1>
+import (
+    "github.com/gotexxx/searchapp/view/layout"
+    "github.com/gotexxx/searchapp/view/componetns"
+    "github.com/gotexxx/searchapp/model"
+    )
+
+func getSearchedLink(c context.Context) string{
+    link, ok := c.Value("link").(string)
+    if !ok{
+        return ""
+    }
+    return link
+}
+templ Show(link model.Link){
+    @layout.Base(){
+
+     <h1>
+        searchedLink: {
+            getSearchedLink(ctx)
+        }
+     </h1>   
+
+    <h1> hello mr {link.Url} </h1>
+        @componetns.Input()
+    
+    }
 }
